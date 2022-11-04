@@ -1,10 +1,10 @@
-package com.example.movee.model
+package com.example.movee.data.model
 
 import com.google.gson.annotations.SerializedName
 
-data class MoviesResponse(
+data class PopularMoviesResponse(
     @SerializedName ("page") val page: Int,
-    @SerializedName ("movies") val movies: List<Movies>,
+    @SerializedName ("results") val movies: List<PopularMovies>,
     @SerializedName ("total_pages") val total_pages: Int,
     @SerializedName ("total_results") val total_results: Int
 )
