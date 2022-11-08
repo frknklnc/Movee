@@ -33,7 +33,7 @@ fun MovieRateItem(modifier: Modifier = Modifier,
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
             Icon(painterResource(
-                id = R.drawable.icon_star),
+                id = R.drawable.ic_star),
                 contentDescription = null,
                 tint = textColor,
                 modifier = Modifier.size(15.dp))
@@ -49,6 +49,6 @@ fun MovieRateItem(modifier: Modifier = Modifier,
 @Preview
 @Composable
 fun MovieRateItemPreview() {
-    MovieRateItem(rate = "5")
+    MovieRateItem(rate = "8")
     
 }

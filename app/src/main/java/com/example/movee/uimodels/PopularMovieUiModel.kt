@@ -1,6 +1,6 @@
-package com.example.movee.domain.model
+package com.example.movee.uimodels
 
-data class PopularMovieUiModel(val id: Int,
+data class PopularMovieUiModel(val movieId: Int,
                                val releaseDate: String,
                                val voteAverage: Double,
                                val title: String,

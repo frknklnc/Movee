@@ -1,8 +1,9 @@
 package com.example.movee.data.repository
 
-import android.util.Log
 import com.example.movee.data.remote.api.MoviesAPI
-import com.example.movee.domain.model.PopularMovieUiModel
+import com.example.movee.uimodels.MovieDetailUiModel
+import com.example.movee.uimodels.NowPlayingMovieUiModel
+import com.example.movee.uimodels.PopularMovieUiModel
 import com.example.movee.util.Constants.API_KEY
 import com.example.movee.util.Resource
 import javax.inject.Inject
@@ -14,61 +15,50 @@ class MoviesRepository @Inject constructor(private val api : MoviesAPI) {
             val response = api.popularMovies(api_key = API_KEY)
             if (response.isSuccessful){
                 response.body()?.let {
-                    Log.e("error",response.body().toString())
                     return@let Resource.Success(it.movies.map { it.toUiModel() })
                 }?: Resource.Error("Error.")
 
             }else{
-                Log.e("error","else")
                 Resource.Error("Error.")
             }
         }catch (e: Exception){
-            Log.e("error","catch")
             Resource.Error("Error.")
         }
     }
 
-}
 
-    /*var moviesList: MutableLiveData<List<Movies>>
+    suspend fun getNowPlayingMoviesList():Resource<List<NowPlayingMovieUiModel>>{
+        return try{
+            val response = api.nowPlayingMovies(api_key = API_KEY)
+            if (response.isSuccessful){
+                response.body()?.let { res ->
+                    return@let Resource.Success(res.movies.map { it.toUiModel() })
+                }?: Resource.Error("Error.")
 
-    init {
-        moviesList = MutableLiveData()
+            }else{
+                Resource.Error("Error.")
+            }
+        }catch (e: Exception){
+
+            Resource.Error("Error.")
+        }
     }
 
+    suspend fun getMovieDetails(movieId: Int):Resource<MovieDetailUiModel>{
+        return try{
+            val response = api.movieDetails(api_key = API_KEY, movieId = movieId)
+            if (response.isSuccessful){
+                response.body()?.let {
+                    return@let Resource.Success(it.toUiModel())
+                }?: Resource.Error("Error.")
 
-    /*fun getMoviesList(){
-        api.popularMovies().enqueue(object : Callback<MoviesResponse>{
-            override fun onResponse(
-                call: Call<MoviesResponse>,
-                response: Response<MoviesResponse>
-            ) {
-                if (response.isSuccessful){
-                    val list = response.body()!!.movies
-                    moviesList.value = list
-                }else{
-                    Log.e("movies","${response.errorBody()}")
-                }
+            }else{
+                Resource.Error("Error.")
             }
+        }catch (e: Exception){
 
-            override fun onFailure(call: Call<MoviesResponse>, t: Throwable) {
-                Log.e("movies","${t.printStackTrace()}")
-            }
-
-        })
-    }*/
-
+            Resource.Error("${e.message}")
+        }
+    }
 
 }
-
-
-
-/*suspend fun getMoviesList(): Resource<MoviesResponse> {
-        val response = try {
-            api.popularMovies()
-        }catch (e: Exception){
-            return Resource.Error("Error.")
-        }
-        Log.e("asd","asd")
-        return Resource.Success(response)
-    }*/
