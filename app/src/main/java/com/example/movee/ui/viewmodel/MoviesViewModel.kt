@@ -4,8 +4,8 @@ import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.movee.data.repository.MoviesRepository
-import com.example.movee.uimodels.NowPlayingMovieUiModel
-import com.example.movee.uimodels.PopularMovieUiModel
+import com.example.movee.uimodels.movies.NowPlayingMovieUiModel
+import com.example.movee.uimodels.movies.PopularMovieUiModel
 import com.example.movee.util.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -13,7 +13,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class MainViewModel @Inject constructor(private val repository: MoviesRepository) :ViewModel() {
+class MoviesViewModel @Inject constructor(private val repository: MoviesRepository) :ViewModel() {
 
     val popularMoviesList = MutableStateFlow<List<PopularMovieUiModel>>(listOf())
     val nowPlayingMoviesList = MutableStateFlow<List<NowPlayingMovieUiModel>>(listOf())
@@ -32,7 +32,6 @@ class MainViewModel @Inject constructor(private val repository: MoviesRepository
                         popularMoviesList.value = it
                     }
                 }
-
                 is Resource.Error ->{
                     result.message?.let {
                     }

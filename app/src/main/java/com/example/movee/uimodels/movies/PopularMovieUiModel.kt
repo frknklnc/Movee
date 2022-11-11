@@ -1,4 +1,4 @@
-package com.example.movee.uimodels
+package com.example.movee.uimodels.movies
 
 data class PopularMovieUiModel(val movieId: Int,
                                val releaseDate: String,

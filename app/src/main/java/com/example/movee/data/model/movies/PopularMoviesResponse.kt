@@ -1,6 +1,6 @@
-package com.example.movee.data.model
+package com.example.movee.data.model.movies
 
-import com.example.movee.uimodels.PopularMovieUiModel
+import com.example.movee.uimodels.movies.PopularMovieUiModel
 import com.google.gson.annotations.SerializedName
 
 data class PopularMoviesResponse(

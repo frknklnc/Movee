@@ -9,5 +9,9 @@ class ApiUtils {
         fun getMovies(): MoviesAPI {
             return RetrofitClient.getClient(BASE_URL).create(MoviesAPI::class.java)
         }
+
+        fun getTvSeries(): TvSeriesAPI{
+            return RetrofitClient.getClient(BASE_URL).create(TvSeriesAPI::class.java)
+        }
     }
 }

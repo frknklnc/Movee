@@ -21,14 +21,14 @@ import com.example.movee.R
 
 @Composable
 fun MovieRateItem(modifier: Modifier = Modifier,
-                  backgroundColor: Color = colorResource(id = R.color.purple),
-                  textColor : Color = colorResource(id = R.color.white),
+                  backgroundColor: Color = colorResource(id = R.color.green),
+                  textColor : Color = colorResource(id = R.color.mainColor),
                   rate: String) {
 
     Surface(modifier = modifier, shape = RoundedCornerShape(10.dp), color = backgroundColor) {
 
         Row(
-            modifier = Modifier.padding(3.dp),
+            modifier = Modifier.padding(horizontal = 6.dp, vertical = 4.dp),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
@@ -38,7 +38,7 @@ fun MovieRateItem(modifier: Modifier = Modifier,
                 tint = textColor,
                 modifier = Modifier.size(15.dp))
 
-            Text(text = rate, color = textColor, fontSize = 12.sp)
+            Text(text = rate, color = textColor, fontSize = 14.sp)
 
         }
 

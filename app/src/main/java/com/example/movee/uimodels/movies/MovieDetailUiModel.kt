@@ -1,4 +1,4 @@
-package com.example.movee.uimodels
+package com.example.movee.uimodels.movies
 
 class MovieDetailUiModel(val movieId: Int,
                          val runtime: Int,

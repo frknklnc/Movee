@@ -3,7 +3,6 @@ package com.example.movee.ui.view
 import android.R
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.ScrollState
-import androidx.compose.foundation.gestures.scrollable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Text
@@ -24,52 +23,59 @@ import coil.request.ImageRequest
 import com.example.movee.ui.components.MovieDateItem
 import com.example.movee.ui.components.MovieRateItem
 import com.example.movee.ui.components.MovieRuntimeItem
-import com.example.movee.ui.viewmodel.DetailViewModel
+import com.example.movee.ui.components.TextItem
+import com.example.movee.ui.viewmodel.MovieDetailViewModel
 import com.example.movee.util.Constants
 
 @Composable
-fun DetailScreen(navController: NavController,
-                 scrollState: ScrollState,
-                 viewModel: DetailViewModel = hiltViewModel()) {
+fun MovieDetailScreen(
+    navController: NavController,
+    scrollState: ScrollState,
+    viewModel: MovieDetailViewModel = hiltViewModel()
+) {
 
     val movieDetails = viewModel.movieDetails.collectAsState()
 
-    movieDetails.value?.let {movieDetails->
+    movieDetails.value?.let { details ->
 
-        Column(modifier = Modifier.verticalScroll(scrollState),
-            horizontalAlignment = Alignment.CenterHorizontally) {
+        Column(
+            modifier = Modifier.verticalScroll(scrollState),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
             Image(
                 painter = rememberAsyncImagePainter(
                     model = ImageRequest.Builder(LocalContext.current)
-                        .data(Constants.IMAGE_BASE + movieDetails.posterPath)
+                        .data(Constants.IMAGE_BASE + details.posterPath)
                         .placeholder(R.drawable.dialog_frame).crossfade(true).build()
                 ),
-                contentDescription = movieDetails.title,
+                contentDescription = details.title,
                 modifier = Modifier
                     .fillMaxSize()
                     .padding(bottom = 12.dp),
                 contentScale = ContentScale.Crop
             )
-            //Spacer(modifier = Modifier.padding(8.dp))
 
             Column(modifier = Modifier.padding(start = 16.dp, end = 16.dp)) {
 
-                Row(modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(end = 32.dp), horizontalArrangement = Arrangement.SpaceBetween) {
-                    Text(text = movieDetails.title, fontSize = 20.sp, fontWeight = FontWeight.Bold)
-                    MovieRateItem(rate = movieDetails.voteAverage.toString())
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(end = 32.dp), horizontalArrangement = Arrangement.SpaceBetween
+                ) {
+                    TextItem(text = details.title, fontSize = 20.sp, fontWeight = FontWeight.Bold)
+                    MovieRateItem(rate = details.voteAverage.toString())
                 }
                 Spacer(modifier = Modifier.padding(5.dp))
-                Text(text = movieDetails.genre)
+
+                TextItem(text = details.genre)
 
                 Row(modifier = Modifier.padding(top = 8.dp, bottom = 8.dp)) {
-                    MovieRuntimeItem(runtime = movieDetails.runtime.toString())
+                    MovieRuntimeItem(runtime = details.runtime.toString())
                     Spacer(modifier = Modifier.padding(10.dp))
-                    MovieDateItem(date = movieDetails.releaseDate, textColor = colorResource(id = com.example.movee.R.color.green))
+                    MovieDateItem(date = details.releaseDate)
                 }
 
-                Text(text = movieDetails.overview)
+                TextItem(text = details.overview, Modifier.padding(bottom = 10.dp))
 
             }
         }

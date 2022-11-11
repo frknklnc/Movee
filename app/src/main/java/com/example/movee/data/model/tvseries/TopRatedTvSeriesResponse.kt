@@ -1,62 +1,51 @@
-package com.example.movee.data.model
+package com.example.movee.data.model.tvseries
 
-import com.example.movee.uimodels.NowPlayingMovieUiModel
+
+import com.example.movee.uimodels.tvseries.TopRatedTvSeriesUiModel
 import com.google.gson.annotations.SerializedName
 
-data class NowPlayingMoviesResponse(
-    @SerializedName("dates")
-    val dates: Dates,
+data class TopRatedTvSeriesResponse(
     @SerializedName("page")
     val page: Int,
     @SerializedName("results")
-    val movies: List<NowPlayingMovies>,
+    val tvSeries: List<Result>,
     @SerializedName("total_pages")
     val totalPages: Int,
     @SerializedName("total_results")
     val totalResults: Int
-){
-    data class Dates(
-        @SerializedName("maximum")
-        val maximum: String,
-        @SerializedName("minimum")
-        val minimum: String
-    )
-
-    data class NowPlayingMovies(
-        @SerializedName("adult")
-        val adult: Boolean,
+) {
+    data class Result(
         @SerializedName("backdrop_path")
-        val backdropPath: String,
+        val backdropPath: String?,
+        @SerializedName("first_air_date")
+        val firstAirDate: String,
         @SerializedName("genre_ids")
         val genreİds: List<Int>,
         @SerializedName("id")
-        val movieId: Int,
+        val tvSeriesId: Int,
+        @SerializedName("name")
+        val title: String,
+        @SerializedName("origin_country")
+        val originCountry: List<String>,
         @SerializedName("original_language")
         val originalLanguage: String,
-        @SerializedName("original_title")
-        val originalTitle: String,
+        @SerializedName("original_name")
+        val originalName: String,
         @SerializedName("overview")
         val overview: String,
         @SerializedName("popularity")
         val popularity: Double,
         @SerializedName("poster_path")
         val posterPath: String,
-        @SerializedName("release_date")
-        val releaseDate: String,
-        @SerializedName("title")
-        val title: String,
-        @SerializedName("video")
-        val video: Boolean,
         @SerializedName("vote_average")
         val voteAverage: Double,
         @SerializedName("vote_count")
         val voteCount: Int
     ){
-        fun toUiModel() = NowPlayingMovieUiModel(
-            movieId = movieId,
+        fun toUiModel() = TopRatedTvSeriesUiModel(
+            tvSeriesId = tvSeriesId,
             title = title,
             posterPath = posterPath,
-            releaseDate = releaseDate,
             voteAverage = voteAverage
         )
     }

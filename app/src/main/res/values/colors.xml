@@ -9,5 +9,7 @@
     <color name="white">#FFFFFFFF</color>
     <color name="purple">#C47AFF</color>
     <color name="milk">#F5F4F0</color>
-    <color name="green">#9EC86D</color>
+    <color name="green">#dbfb4c</color>
+    <color name="lightGreen">#EFF6CF</color>
+    <color name="mainColor">#1f1f1f</color>
 </resources>

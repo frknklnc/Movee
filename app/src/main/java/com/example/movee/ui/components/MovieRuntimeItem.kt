@@ -18,7 +18,7 @@ import com.example.movee.R
 
 @Composable
 fun MovieRuntimeItem(modifier: Modifier = Modifier,
-                     textColor: Color = colorResource(id = R.color.green),
+                     textColor: Color = colorResource(id = R.color.mainColor),
                      runtime: String) {
 
     Row(

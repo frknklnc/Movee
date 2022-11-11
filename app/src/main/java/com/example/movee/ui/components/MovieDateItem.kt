@@ -16,7 +16,7 @@ import com.example.movee.R
 
 @Composable
 fun MovieDateItem(modifier: Modifier = Modifier,
-                  textColor: Color = colorResource(id = R.color.black),
+                  textColor: Color = colorResource(id = R.color.mainColor),
                   date: String) {
 
         Row(
