@@ -19,11 +19,7 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.example.movee.R
-import com.example.movee.ui.view.MovieDetailScreen
-import com.example.movee.ui.view.MoviesScreen
-import com.example.movee.ui.view.TvSeriesDetailScreen
-import com.example.movee.ui.view.TvSeriesScreen
-import java.nio.file.Files.size
+import com.example.movee.ui.view.*
 
 @Composable
 fun Navigation() {
@@ -33,14 +29,6 @@ fun Navigation() {
     val items = listOf(Route.MainScreen, Route.TvSeriesScreen)
 
     Scaffold(
-        /*topBar = {
-            TopAppBar(
-                title = { Text(text = "MOVEE") },
-                modifier = Modifier,
-                backgroundColor = MaterialTheme.colors.primary
-            )
-        },*/
-
         bottomBar = {
             BottomNavigation {
                 val navBackStackEntry by navController.currentBackStackEntryAsState()
@@ -90,16 +78,25 @@ fun Navigation() {
             }
 
             composable(route = Route.TvSeriesScreen.route) {
-                TvSeriesScreen(navController = navController)
+                TvScreen(navController = navController, scrollState = scrollState)
             }
 
             composable(
-                route = Route.TvSeriesDetailScreen.route + "/{tvSeriesId}",
+                route = Route.TvDetailScreen.route + "/{tvSeriesId}",
                 arguments = listOf(navArgument("tvSeriesId") {
                     type = NavType.IntType
                 })
             ) {
-                TvSeriesDetailScreen(navController = navController, scrollState = scrollState)
+                TvSDetailScreen(navController = navController, scrollState = scrollState)
+            }
+
+            composable(
+                route = Route.CastScreen.route + "/{castId}",
+                arguments = listOf(navArgument("castId") {
+                    type = NavType.IntType
+                })
+            ) {
+                CastScreen(navController = navController, scrollState = scrollState)
             }
         }
     }

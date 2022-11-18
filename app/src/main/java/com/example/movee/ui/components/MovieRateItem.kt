@@ -28,7 +28,7 @@ fun MovieRateItem(modifier: Modifier = Modifier,
     Surface(modifier = modifier, shape = RoundedCornerShape(10.dp), color = backgroundColor) {
 
         Row(
-            modifier = Modifier.padding(horizontal = 6.dp, vertical = 4.dp),
+            modifier = Modifier.padding(horizontal = 6.dp, vertical = 2.dp),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceBetween
         ) {

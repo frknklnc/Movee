@@ -14,11 +14,12 @@ sealed class Route(val route: String){
         override val title: String = "Movies"
     }
 
-    object TvSeriesScreen : Route("tv_series_screen"), BottomNavigationItem {
+    object TvSeriesScreen : Route("tv_screen"), BottomNavigationItem {
         override val  icon = R.drawable.ic_tvseries
         override val title: String = "Tv Series"
     }
 
     object MovieDetailScreen: Route("movie_detail_screen")
-    object TvSeriesDetailScreen: Route("tv_series_detail_screen")
+    object TvDetailScreen: Route("tv_detail_screen")
+    object CastScreen: Route("cast_screen")
 }

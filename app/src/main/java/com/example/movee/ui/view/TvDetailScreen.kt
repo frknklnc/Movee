@@ -1,5 +1,6 @@
 package com.example.movee.ui.view
 
+
 import androidx.compose.foundation.ScrollState
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -7,7 +8,6 @@ import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Card
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
@@ -17,61 +17,55 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
+import androidx.navigation.navOptions
 import com.example.movee.navigation.Route
-import com.example.movee.ui.components.MovieDateItem
+import com.example.movee.ui.components.ChipItem
 import com.example.movee.ui.components.MovieRateItem
-import com.example.movee.ui.components.MovieRuntimeItem
 import com.example.movee.ui.components.TextItem
-import com.example.movee.ui.viewmodel.MovieDetailViewModel
+import com.example.movee.ui.viewmodel.TvDetailViewModel
 import com.example.movee.uimodels.CreditUiModel
 import com.example.movee.util.round
 
 @Composable
-fun MovieDetailScreen(
+fun TvSDetailScreen(
     navController: NavController,
     scrollState: ScrollState,
-    viewModel: MovieDetailViewModel = hiltViewModel()
+    viewModel: TvDetailViewModel = hiltViewModel()
 ) {
 
     val uiState = viewModel.uiState.collectAsState()
 
     uiState.value?.let { state ->
-
         Column(
-            modifier = Modifier.verticalScroll(scrollState)
+            modifier = Modifier.verticalScroll(scrollState),
         ) {
-            if (state.movieDetailUiModel != null) {
+            if (state.tvDetailUiModel != null) {
 
-                PosterImageItem(imagePath = state.movieDetailUiModel.posterPath)
+                PosterImageItem(imagePath = state.tvDetailUiModel.posterPath)
 
-                Column(modifier = Modifier.padding(horizontal = 16.dp)) {
+                Column(modifier = Modifier.padding(start = 16.dp, end = 16.dp)) {
 
-
-                    Text(
-                        text = state.movieDetailUiModel.title,
+                    TextItem(
+                        text = state.tvDetailUiModel.title,
                         fontSize = 20.sp,
-                        fontWeight = FontWeight.Bold,
-                        maxLines = 1,
-                        overflow = TextOverflow.Ellipsis,
-                        modifier = Modifier.padding(bottom = 5.dp)
+                        fontWeight = FontWeight.Bold
                     )
-                    //Spacer(modifier = Modifier.padding(5.dp))
-
-                    TextItem(text = state.movieDetailUiModel.genre)
-
                     Row(
-                        modifier = Modifier.padding(vertical = 8.dp)
+                        modifier = Modifier
+                            .padding(vertical = 8.dp)
+                            .fillMaxWidth(),
+                        horizontalArrangement = Arrangement.SpaceBetween
                     ) {
-                        MovieRuntimeItem(runtime = state.movieDetailUiModel.runtime.toString())
-                        Spacer(modifier = Modifier.padding(10.dp))
-                        MovieDateItem(date = state.movieDetailUiModel.releaseDate)
-                        Spacer(modifier = Modifier.padding(10.dp))
-                        MovieRateItem(rate = round(state.movieDetailUiModel.voteAverage) + " " + "(${state.movieDetailUiModel.voteCount})")
+                        ChipItem(string = "Seasons: " + state.tvDetailUiModel.numberOfSeasons.toString())
+                        ChipItem(string = "Episodes: " + state.tvDetailUiModel.numberOfEpisodes.toString())
+                        MovieRateItem(
+                            rate = round(state.tvDetailUiModel.voteAverage) + " " + "(${state.tvDetailUiModel.voteCount})"
+                        )
                     }
                     TextItem(
-                        text = state.movieDetailUiModel.overview
+                        text = state.tvDetailUiModel.overview,
+                        Modifier.padding(bottom = 10.dp)
                     )
-
                 }
             }
             TextItem(
@@ -81,28 +75,29 @@ fun MovieDetailScreen(
                 modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp)
             )
             LazyRow(
-                modifier = Modifier.padding(start = 16.dp, end = 16.dp, bottom = 10.dp),
+                modifier = Modifier.padding(start = 16.dp, end = 16.dp, bottom = 16.dp),
                 horizontalArrangement = Arrangement.spacedBy(10.dp)
             ) {
                 items(state.castList.size) { index ->
-                    MoviesCredits(
+                    TvSeriesCredits(
                         cast = state.castList[index],
                         onClick = { id ->
-                            navController.navigate(Route.CastScreen.route + "/${id}")
+                            navController.navigate(Route.CastScreen.route + "/${id}", navOptions {
+                                restoreState = false
+                            })
                         })
                 }
             }
         }
-
     }
 }
 
+
 @Composable
-fun MoviesCredits(
+fun TvSeriesCredits(
     cast: CreditUiModel,
     onClick: (Int) -> Unit
 ) {
-
     Card(
         modifier = Modifier
             .width(100.dp)
@@ -122,9 +117,7 @@ fun MoviesCredits(
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis
             )
-
         }
-
     }
-
 }
+

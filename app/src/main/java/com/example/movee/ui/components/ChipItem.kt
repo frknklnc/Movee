@@ -27,7 +27,7 @@ fun ChipItem(
             text = string,
             color = textColor,
             fontSize = 14.sp,
-            modifier = Modifier.padding(vertical = 4.dp, horizontal = 6.dp)
+            modifier = Modifier.padding(vertical = 2.dp, horizontal = 6.dp)
         )
     }
 

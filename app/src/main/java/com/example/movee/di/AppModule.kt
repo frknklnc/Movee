@@ -1,10 +1,9 @@
 package com.example.movee.di
 
-import com.example.movee.data.remote.api.ApiUtils
-import com.example.movee.data.remote.api.MoviesAPI
-import com.example.movee.data.remote.api.TvSeriesAPI
-import com.example.movee.data.repository.MoviesRepository
-import com.example.movee.data.repository.TvSeriesRepository
+import com.example.movee.data.remote.service.CastService
+import com.example.movee.data.remote.service.ApiUtils
+import com.example.movee.data.remote.service.MovieService
+import com.example.movee.data.remote.service.TvService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -17,26 +16,32 @@ object AppModule {
 
     @Singleton
     @Provides
-    fun provideMoviesAPI(): MoviesAPI {
+    fun provideMoviesAPI(): MovieService {
         return ApiUtils.getMovies()
     }
 
-    @Singleton
+    /*@Singleton
     @Provides
     fun provideMoviesRepo(api: MoviesAPI): MoviesRepository {
         return MoviesRepository(api)
-    }
+    }*/
 
     @Singleton
     @Provides
-    fun provideTvSeriesAPI(): TvSeriesAPI {
+    fun provideTvSeriesAPI(): TvService {
         return ApiUtils.getTvSeries()
     }
 
-    @Singleton
+    /*@Singleton
     @Provides
     fun provideTvSeriesRepo(api: TvSeriesAPI): TvSeriesRepository {
         return TvSeriesRepository(api)
+    }*/
+
+    @Singleton
+    @Provides
+    fun provideActorService(): CastService{
+        return ApiUtils.getActors()
     }
 
 }

@@ -14,10 +14,10 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
 import androidx.core.view.ViewCompat
 
-private val DarkColorPalette = darkColors(
-    primary = mainColor, // purple80
-    secondary = PurpleGrey80,
-    primaryVariant = Pink80
+private val DarkColorPalette = lightColors(
+    primary = mainColor, // purple40
+    secondary = PurpleGrey40,
+    primaryVariant = Pink40
 )
 
 private val LightColorPalette = lightColors(
