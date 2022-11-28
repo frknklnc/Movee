@@ -20,14 +20,13 @@ fun PosterImageItem(imagePath: String) {
         painter = rememberAsyncImagePainter(
             model = ImageRequest.Builder(LocalContext.current)
                 .data(Constants.IMAGE_BASE + imagePath)
-                .placeholder(R.drawable.dialog_frame).crossfade(true).build()
+                .error(com.example.movee.R.drawable.image_place_holder).placeholder(R.drawable.dialog_frame).crossfade(true).build()
         ),
         contentDescription = null,
         modifier = Modifier
             .fillMaxSize(),
         contentScale = ContentScale.Crop
     )
-
 }
 
 @Composable
@@ -35,12 +34,11 @@ fun CardImageItem(
     imagePath: String, modifier: Modifier = Modifier.size(height = 150.dp, width = 100.dp),
     contentScale: ContentScale = ContentScale.Fit
 ) {
-
     Image(
         painter = rememberAsyncImagePainter(
             model = ImageRequest.Builder(LocalContext.current)
                 .data(Constants.IMAGE_BASE + imagePath)
-                .placeholder(R.drawable.dialog_frame).crossfade(true).build()
+                .error(com.example.movee.R.drawable.image_place_holder).placeholder(R.drawable.dialog_frame).crossfade(true).build()
         ),
         contentDescription = null,
         modifier = modifier,

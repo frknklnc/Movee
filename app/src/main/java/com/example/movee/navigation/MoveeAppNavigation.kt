@@ -26,7 +26,7 @@ fun Navigation() {
 
     val navController = rememberNavController()
     val scrollState = rememberScrollState()
-    val items = listOf(Route.MainScreen, Route.TvSeriesScreen)
+    val items = listOf(Route.MovieScreen, Route.TvScreen, Route.SearchScreen)
 
     Scaffold(
         bottomBar = {
@@ -61,10 +61,10 @@ fun Navigation() {
     ) { innerPadding ->
         NavHost(
             navController = navController,
-            startDestination = Route.MainScreen.route,
+            startDestination = Route.MovieScreen.route,
             modifier = Modifier.padding(innerPadding)
         ) {
-            composable(route = Route.MainScreen.route) {
+            composable(route = Route.MovieScreen.route) {
                 MoviesScreen(navController = navController)
             }
 
@@ -77,7 +77,7 @@ fun Navigation() {
                 MovieDetailScreen(navController = navController, scrollState = scrollState)
             }
 
-            composable(route = Route.TvSeriesScreen.route) {
+            composable(route = Route.TvScreen.route) {
                 TvScreen(navController = navController, scrollState = scrollState)
             }
 
@@ -97,6 +97,11 @@ fun Navigation() {
                 })
             ) {
                 CastScreen(navController = navController, scrollState = scrollState)
+            }
+            composable(
+                route = Route.SearchScreen.route
+            ) {
+                SearchScreen(navController = navController)
             }
         }
     }

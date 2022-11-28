@@ -21,29 +21,11 @@ class MovieDetailViewModel @Inject constructor(
 ) : ViewModel() {
 
     val uiState = MutableStateFlow<MovieDetailModel?>(null)
-    val movieDetails = MutableStateFlow<MovieDetailUiModel?>(null)
 
     init {
         fetchData(checkNotNull(savedStateHandle.get<Int>("movieId")))
 
     }
-
-    /*private fun loadMovieDetails(movieId: Int) {
-        viewModelScope.launch {
-            val result = repository.getMovieDetails(movieId = movieId)
-            when (result) {
-                is Resource.Success -> {
-                    result.data.let {
-                        movieDetails.value = it
-                    }
-                }
-                is Resource.Error -> {
-                    result.message?.let {
-                    }
-                }
-            }
-        }
-    }*/
 
     private fun fetchData(movieId: Int) {
         viewModelScope.launch {

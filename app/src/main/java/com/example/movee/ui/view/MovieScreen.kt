@@ -9,7 +9,6 @@ import androidx.compose.material.Card
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.State
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.graphicsLayer
@@ -46,9 +45,9 @@ fun MoviesScreen(
     val popularMoviesList = viewModel.popularMoviesList.collectAsState()
 
     MovieListView(
-        popularMovies = popularMoviesList,
+        popularMovies = popularMoviesList.value,
         navController = navController,
-        nowPlayingMovies = nowPlayingMoviesList
+        nowPlayingMovies = nowPlayingMoviesList.value
     )
 
 }
@@ -56,8 +55,8 @@ fun MoviesScreen(
 @OptIn(ExperimentalPagerApi::class)
 @Composable
 fun MovieListView(
-    popularMovies: State<List<PopularMovieUiModel>>,
-    nowPlayingMovies: State<List<NowPlayingMovieUiModel>>,
+    popularMovies: List<PopularMovieUiModel>,
+    nowPlayingMovies: List<NowPlayingMovieUiModel>,
     navController: NavController
 ) {
     LazyColumn {
@@ -72,7 +71,7 @@ fun MovieListView(
 
         item {
             HorizontalPager(
-                count = nowPlayingMovies.value.size,
+                count = nowPlayingMovies.size,
                 modifier = Modifier.fillMaxSize(),
                 contentPadding = PaddingValues(horizontal = 85.dp)
             ) { page ->
@@ -96,13 +95,13 @@ fun MovieListView(
                         }
                         .fillMaxWidth()
                         .clickable {
-                            nowPlayingMovies.value[page].movieId
-                            navController.navigate(Route.MovieDetailScreen.route + "/${nowPlayingMovies.value[page].movieId}")
+                            nowPlayingMovies[page].movieId
+                            navController.navigate(Route.MovieDetailScreen.route + "/${nowPlayingMovies[page].movieId}")
                         }
                         .aspectRatio(0.6655f)
                 ) {
                     CardImageItem(
-                        imagePath = nowPlayingMovies.value[page].posterPath,
+                        imagePath = nowPlayingMovies[page].posterPath,
                         modifier = Modifier.fillMaxSize(), ContentScale.Crop
                     )
 
@@ -118,7 +117,7 @@ fun MovieListView(
             )
         }
 
-        items(popularMovies.value) { movies ->
+        items(popularMovies) { movies ->
             PopularMovieRow(movies = movies, onClick = { id ->
                 navController.navigate(Route.MovieDetailScreen.route + "/${movies.movieId}")
 

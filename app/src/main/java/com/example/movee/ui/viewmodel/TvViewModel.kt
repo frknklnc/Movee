@@ -12,7 +12,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class TvViewModel @Inject constructor(private val repository: TvRepository): ViewModel() {
+class TvViewModel @Inject constructor(private val repository: TvRepository) : ViewModel() {
 
     val popularTvSeriesList = MutableStateFlow<List<PopularTvUiModel>>(listOf())
     val topRatedTvSeriesList = MutableStateFlow<List<TopRatedTvUiModel>>(listOf())
@@ -22,10 +22,10 @@ class TvViewModel @Inject constructor(private val repository: TvRepository): Vie
         loadTopRatedTvSeries()
     }
 
-    private fun loadPopularTvSeries(){
+    private fun loadPopularTvSeries() {
         viewModelScope.launch {
             val result = repository.getPopularTv()
-            when(result){
+            when (result) {
                 is Resource.Success -> {
                     result.data?.let {
                         popularTvSeriesList.value = it
@@ -39,16 +39,16 @@ class TvViewModel @Inject constructor(private val repository: TvRepository): Vie
         }
     }
 
-    private fun loadTopRatedTvSeries(){
+    private fun loadTopRatedTvSeries() {
         viewModelScope.launch {
             val result = repository.getTopRatedTv()
-            when(result){
+            when (result) {
                 is Resource.Success -> {
                     result.data?.let {
                         topRatedTvSeriesList.value = it
                     }
                 }
-                is  Resource.Error -> {
+                is Resource.Error -> {
                     result.message?.let {
 
                     }

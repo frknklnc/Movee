@@ -13,7 +13,9 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class MovieViewModel @Inject constructor(private val repository: MovieRepository) :ViewModel() {
+class MovieViewModel @Inject constructor(
+    private val repository: MovieRepository
+) : ViewModel() {
 
     val popularMoviesList = MutableStateFlow<List<PopularMovieUiModel>>(listOf())
     val nowPlayingMoviesList = MutableStateFlow<List<NowPlayingMovieUiModel>>(listOf())
@@ -23,16 +25,16 @@ class MovieViewModel @Inject constructor(private val repository: MovieRepository
         loadNowPlayingMovies()
     }
 
-    private fun loadPopularMovies(){
+    private fun loadPopularMovies() {
         viewModelScope.launch {
             val result = repository.getPopularMoviesList()
-            when(result){
+            when (result) {
                 is Resource.Success -> {
                     result.data?.let {
                         popularMoviesList.value = it
                     }
                 }
-                is Resource.Error ->{
+                is Resource.Error -> {
                     result.message?.let {
                     }
                 }
@@ -40,21 +42,21 @@ class MovieViewModel @Inject constructor(private val repository: MovieRepository
         }
     }
 
-    private fun loadNowPlayingMovies(){
+    private fun loadNowPlayingMovies() {
         viewModelScope.launch {
             val result = repository.getNowPlayingMoviesList()
-            when(result){
+            when (result) {
                 is Resource.Success -> {
                     result.data?.let {
                         nowPlayingMoviesList.value = it
 
-                        Log.e("error","viewmodelSuccess")
+                        Log.e("error", "viewmodelSuccess")
                     }
                 }
 
-                is Resource.Error ->{
+                is Resource.Error -> {
                     result.message?.let {
-                        Log.e("error","viewmodelError")
+                        Log.e("error", "viewmodelError")
                     }
                 }
             }

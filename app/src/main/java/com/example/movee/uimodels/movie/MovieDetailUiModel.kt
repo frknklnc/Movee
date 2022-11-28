@@ -8,5 +8,6 @@ class MovieDetailUiModel(val movieId: Int,
                          val overview: String,
                          val posterPath: String,
                          val genre: String,
-                         val voteCount:Int
+                         val voteCount:Int,
+                         val backdropPath: String?
                          )

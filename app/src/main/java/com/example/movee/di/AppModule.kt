@@ -1,9 +1,6 @@
 package com.example.movee.di
 
-import com.example.movee.data.remote.service.CastService
-import com.example.movee.data.remote.service.ApiUtils
-import com.example.movee.data.remote.service.MovieService
-import com.example.movee.data.remote.service.TvService
+import com.example.movee.data.remote.service.*
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -16,7 +13,7 @@ object AppModule {
 
     @Singleton
     @Provides
-    fun provideMoviesAPI(): MovieService {
+    fun provideMoviesService(): MovieService {
         return ApiUtils.getMovies()
     }
 
@@ -28,7 +25,7 @@ object AppModule {
 
     @Singleton
     @Provides
-    fun provideTvSeriesAPI(): TvService {
+    fun provideTvService(): TvService {
         return ApiUtils.getTvSeries()
     }
 
@@ -43,5 +40,13 @@ object AppModule {
     fun provideActorService(): CastService{
         return ApiUtils.getActors()
     }
+
+    @Singleton
+    @Provides
+    fun provideSearchService(): SearchService{
+        return ApiUtils.getSearch()
+    }
+
+
 
 }

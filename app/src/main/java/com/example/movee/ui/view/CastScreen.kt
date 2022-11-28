@@ -18,6 +18,8 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.ExperimentalLifecycleComposeApi
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
 import com.example.movee.R
 import com.example.movee.navigation.Route
@@ -26,13 +28,14 @@ import com.example.movee.ui.components.TextItem
 import com.example.movee.ui.viewmodel.CastViewModel
 import com.example.movee.uimodels.actor.CastCreditUiModel
 
+@OptIn(ExperimentalLifecycleComposeApi::class)
 @Composable
 fun CastScreen(
     navController: NavController,
     scrollState: ScrollState,
     viewModel: CastViewModel = hiltViewModel()
 ) {
-    val uiState = viewModel.uiState.collectAsState()
+    val uiState = viewModel.uiState.collectAsStateWithLifecycle()
 
     uiState.value?.let { state ->
         Column(
@@ -92,7 +95,7 @@ fun ActorCredit(
         modifier = Modifier
             .width(100.dp)
             .fillMaxHeight()
-            .clickable { onClick.invoke(Pair(credit.id,credit.mediaType)) },
+            .clickable { onClick.invoke(Pair(credit.id, credit.mediaType)) },
         shape = RoundedCornerShape(5.dp),
         elevation = 5.dp
     ) {

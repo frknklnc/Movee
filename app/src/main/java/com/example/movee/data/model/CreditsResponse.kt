@@ -1,6 +1,7 @@
 package com.example.movee.data.model
 
 
+import com.example.movee.R
 import com.example.movee.uimodels.CreditUiModel
 import com.google.gson.annotations.SerializedName
 

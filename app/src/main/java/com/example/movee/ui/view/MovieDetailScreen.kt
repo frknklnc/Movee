@@ -41,11 +41,9 @@ fun MovieDetailScreen(
             modifier = Modifier.verticalScroll(scrollState)
         ) {
             if (state.movieDetailUiModel != null) {
-
-                PosterImageItem(imagePath = state.movieDetailUiModel.posterPath)
+                PosterImageItem(imagePath = state.movieDetailUiModel.backdropPath ?: state.movieDetailUiModel.posterPath)
 
                 Column(modifier = Modifier.padding(horizontal = 16.dp)) {
-
 
                     Text(
                         text = state.movieDetailUiModel.title,

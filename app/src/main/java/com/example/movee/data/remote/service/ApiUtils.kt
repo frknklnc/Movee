@@ -17,5 +17,8 @@ class ApiUtils {
         fun getActors(): CastService{
             return RetrofitClient.getClient(BASE_URL).create(CastService::class.java)
         }
+        fun getSearch(): SearchService{
+            return RetrofitClient.getClient(BASE_URL).create(SearchService::class.java)
+        }
     }
 }

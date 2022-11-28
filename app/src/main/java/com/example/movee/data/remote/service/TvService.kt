@@ -13,20 +13,24 @@ interface TvService {
 
     @GET("tv/popular")
     suspend fun popularTv(
-        @Query("api_key") api_key: String): Response<PopularTvResponse>
+        @Query("api_key") api_key: String
+    ): Response<PopularTvResponse>
 
     @GET("tv/top_rated")
     suspend fun topRatedTv(
-        @Query("api_key") api_key: String): Response<TopRatedTvResponse>
+        @Query("api_key") api_key: String
+    ): Response<TopRatedTvResponse>
 
     @GET("tv/{tv_id}")
     suspend fun tvDetails(
         @Path("tv_id") tvSeriesId: Int,
-        @Query("api_key") api_key: String) : Response<TvDetailResponse>
+        @Query("api_key") api_key: String
+    ): Response<TvDetailResponse>
 
     @GET("tv/{tv_id}/credits")
     suspend fun tvCredits(
         @Path("tv_id") tvSeriesId: Int,
-        @Query("api_key") api_key: String) : Response<CreditsResponse>
+        @Query("api_key") api_key: String
+    ): Response<CreditsResponse>
 
 }

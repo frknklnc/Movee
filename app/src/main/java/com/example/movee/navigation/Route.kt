@@ -9,14 +9,18 @@ interface BottomNavigationItem{
 }
 
 sealed class Route(val route: String){
-    object MainScreen : Route("main_screen"), BottomNavigationItem {
+    object MovieScreen : Route("movie_screen"), BottomNavigationItem {
         override val icon: Int =  R.drawable.ic_movie
         override val title: String = "Movies"
     }
 
-    object TvSeriesScreen : Route("tv_screen"), BottomNavigationItem {
+    object TvScreen : Route("tv_screen"), BottomNavigationItem {
         override val  icon = R.drawable.ic_tvseries
         override val title: String = "Tv Series"
+    }
+    object SearchScreen : Route("search_screen"), BottomNavigationItem {
+        override val icon: Int = R.drawable.ic_search
+        override val title: String = "Search"
     }
 
     object MovieDetailScreen: Route("movie_detail_screen")
