@@ -13,40 +13,8 @@ object AppModule {
 
     @Singleton
     @Provides
-    fun provideMoviesService(): MovieService {
-        return ApiUtils.getMovies()
+    fun apiService(): ApiService {
+        return ApiUtils.getData()
     }
-
-    /*@Singleton
-    @Provides
-    fun provideMoviesRepo(api: MoviesAPI): MoviesRepository {
-        return MoviesRepository(api)
-    }*/
-
-    @Singleton
-    @Provides
-    fun provideTvService(): TvService {
-        return ApiUtils.getTvSeries()
-    }
-
-    /*@Singleton
-    @Provides
-    fun provideTvSeriesRepo(api: TvSeriesAPI): TvSeriesRepository {
-        return TvSeriesRepository(api)
-    }*/
-
-    @Singleton
-    @Provides
-    fun provideActorService(): CastService{
-        return ApiUtils.getActors()
-    }
-
-    @Singleton
-    @Provides
-    fun provideSearchService(): SearchService{
-        return ApiUtils.getSearch()
-    }
-
-
 
 }

@@ -1,6 +1,6 @@
 package com.example.movee.data.repository
 
-import com.example.movee.data.remote.service.MovieService
+import com.example.movee.data.remote.service.ApiService
 import com.example.movee.uimodels.CreditUiModel
 import com.example.movee.uimodels.movie.MovieDetailUiModel
 import com.example.movee.uimodels.movie.NowPlayingMovieUiModel
@@ -9,7 +9,7 @@ import com.example.movee.util.Constants.API_KEY
 import com.example.movee.util.Resource
 import javax.inject.Inject
 
-class MovieRepository @Inject constructor(private val service: MovieService) {
+class MovieRepository @Inject constructor(private val service: ApiService) {
 
     suspend fun getPopularMoviesList(): Resource<List<PopularMovieUiModel>> {
         return try {

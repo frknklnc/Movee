@@ -1,7 +1,7 @@
 package com.example.movee.data.repository
 
 import android.util.Log
-import com.example.movee.data.remote.service.TvService
+import com.example.movee.data.remote.service.ApiService
 import com.example.movee.uimodels.CreditUiModel
 import com.example.movee.uimodels.tv.PopularTvUiModel
 import com.example.movee.uimodels.tv.TopRatedTvUiModel
@@ -11,7 +11,7 @@ import com.example.movee.util.Resource
 import javax.inject.Inject
 
 class TvRepository @Inject constructor(
-    private val service: TvService,
+    private val service: ApiService,
 ) {
 
     suspend fun getPopularTv(): Resource<List<PopularTvUiModel>> {
