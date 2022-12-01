@@ -1,6 +1,7 @@
 package com.example.movee.di
 
 import com.example.movee.data.remote.service.*
+import com.example.movee.data.repository.AuthRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -15,6 +16,12 @@ object AppModule {
     @Provides
     fun apiService(): ApiService {
         return ApiUtils.getData()
+    }
+
+    @Singleton
+    @Provides
+    fun provideAuthRepo() : AuthRepository{
+        return AuthRepository()
     }
 
 }

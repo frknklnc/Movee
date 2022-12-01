@@ -23,7 +23,7 @@ class MovieRepository @Inject constructor(private val service: ApiService) {
                 Resource.Error("Error.")
             }
         } catch (e: Exception) {
-            Resource.Error("Error.")
+            Resource.Error("${e.message}")
         }
     }
 
@@ -41,7 +41,7 @@ class MovieRepository @Inject constructor(private val service: ApiService) {
             }
         } catch (e: Exception) {
 
-            Resource.Error("Error.")
+            Resource.Error("${e.message}")
         }
     }
 

@@ -25,8 +25,7 @@ class TvRepository @Inject constructor(
                 Resource.Error("Error.")
             }
         } catch (e: Exception) {
-            e.message
-            Resource.Error("Error.")
+            Resource.Error("${e.message}")
         }
 
     }
@@ -43,7 +42,7 @@ class TvRepository @Inject constructor(
                 Resource.Error("Error.")
             }
         } catch (e: Exception) {
-            Resource.Error("Error.")
+            Resource.Error("${e.message}")
         }
     }
 

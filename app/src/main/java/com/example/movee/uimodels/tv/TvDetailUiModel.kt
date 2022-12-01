@@ -9,5 +9,7 @@ class TvDetailUiModel(
     val numberOfEpisodes: Int,
     val overview: String,
     val originalLanguage: String,
-    val voteCount: Int
+    val voteCount: Int,
+    val backdropPath: String
+
 )

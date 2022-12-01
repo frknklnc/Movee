@@ -1,4 +1,4 @@
-package com.example.movee.ui.view
+package com.example.movee.scene.cast
 
 import androidx.compose.foundation.ScrollState
 import androidx.compose.foundation.clickable
@@ -9,7 +9,6 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Card
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.colorResource
@@ -25,7 +24,8 @@ import com.example.movee.R
 import com.example.movee.navigation.Route
 import com.example.movee.ui.components.ExpandableText
 import com.example.movee.ui.components.TextItem
-import com.example.movee.ui.viewmodel.CastViewModel
+import com.example.movee.ui.view.CardImageItem
+import com.example.movee.ui.view.PosterImageItem
 import com.example.movee.uimodels.actor.CastCreditUiModel
 
 @OptIn(ExperimentalLifecycleComposeApi::class)
@@ -44,7 +44,7 @@ fun CastScreen(
         ) {
             if (state.actorDetailUiModel != null) {
 
-                PosterImageItem(imagePath = state.actorDetailUiModel.profilePath)
+                PosterImageItem(imagePath = state.actorDetailUiModel.profilePath, modifier = Modifier)
 
                 Column(modifier = Modifier.padding(start = 16.dp, end = 16.dp)) {
                     TextItem(

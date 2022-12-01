@@ -1,5 +1,6 @@
 package com.example.movee.ui.view
 
+import android.R
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.size
@@ -11,20 +12,19 @@ import androidx.compose.ui.unit.dp
 import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
 import com.example.movee.util.Constants
-import android.R
 
 @Composable
-fun PosterImageItem(imagePath: String) {
+fun PosterImageItem(imagePath: String, modifier: Modifier) {
 
     Image(
         painter = rememberAsyncImagePainter(
             model = ImageRequest.Builder(LocalContext.current)
                 .data(Constants.IMAGE_BASE + imagePath)
-                .error(com.example.movee.R.drawable.image_place_holder).placeholder(R.drawable.dialog_frame).crossfade(true).build()
+                .error(com.example.movee.R.drawable.image_place_holder)
+                .placeholder(R.drawable.dialog_frame).crossfade(true).build()
         ),
         contentDescription = null,
-        modifier = Modifier
-            .fillMaxSize(),
+        modifier.fillMaxSize(),
         contentScale = ContentScale.Crop
     )
 }
@@ -38,7 +38,8 @@ fun CardImageItem(
         painter = rememberAsyncImagePainter(
             model = ImageRequest.Builder(LocalContext.current)
                 .data(Constants.IMAGE_BASE + imagePath)
-                .error(com.example.movee.R.drawable.image_place_holder).placeholder(R.drawable.dialog_frame).crossfade(true).build()
+                .error(com.example.movee.R.drawable.image_place_holder)
+                .placeholder(R.drawable.dialog_frame).crossfade(true).build()
         ),
         contentDescription = null,
         modifier = modifier,

@@ -1,4 +1,4 @@
-package com.example.movee.ui.view
+package com.example.movee.scene.tv
 
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
@@ -19,9 +19,10 @@ import androidx.compose.ui.util.lerp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.example.movee.navigation.Route
+import com.example.movee.scene.movie.calculateCurrentOffsetForPage
 import com.example.movee.ui.components.MovieRateItem
 import com.example.movee.ui.components.TextItem
-import com.example.movee.ui.viewmodel.TvViewModel
+import com.example.movee.ui.view.CardImageItem
 import com.example.movee.uimodels.tv.PopularTvUiModel
 import com.example.movee.uimodels.tv.TopRatedTvUiModel
 import com.google.accompanist.flowlayout.FlowMainAxisAlignment

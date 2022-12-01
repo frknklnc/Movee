@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "710218585825",
+    "project_id": "movee-57a7c",
+    "storage_bucket": "movee-57a7c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:710218585825:android:a8762d0ec8ddc2bbbd09a0",
+        "android_client_info": {
+          "package_name": "com.example.movee"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "710218585825-hr1ir9a37mdmuq44q5f9bukiursqrkcp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDT__XAPe8u8uKZbRWkYmtCFC4wReQUdOE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "710218585825-hr1ir9a37mdmuq44q5f9bukiursqrkcp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

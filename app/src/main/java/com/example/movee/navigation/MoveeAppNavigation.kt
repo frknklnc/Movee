@@ -19,14 +19,22 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.example.movee.R
-import com.example.movee.ui.view.*
+import com.example.movee.scene.cast.CastScreen
+import com.example.movee.scene.login.LoginScreen
+import com.example.movee.scene.login.SignUpScreen
+import com.example.movee.scene.movie.MoviesScreen
+import com.example.movee.scene.moviedetail.MovieDetailScreen
+import com.example.movee.scene.profile.ProfileScreen
+import com.example.movee.scene.search.SearchScreen
+import com.example.movee.scene.tv.TvScreen
+import com.example.movee.scene.tvdetail.TvDetailScreen
 
 @Composable
 fun Navigation() {
 
     val navController = rememberNavController()
     val scrollState = rememberScrollState()
-    val items = listOf(Route.MovieScreen, Route.TvScreen, Route.SearchScreen)
+    val items = listOf(Route.MovieScreen, Route.TvScreen, Route.SearchScreen, Route.ProfileScreen)
 
     Scaffold(
         bottomBar = {
@@ -61,10 +69,43 @@ fun Navigation() {
     ) { innerPadding ->
         NavHost(
             navController = navController,
-            startDestination = Route.MovieScreen.route,
+            startDestination = Route.LoginScreen.route,
             modifier = Modifier.padding(innerPadding)
         ) {
-            composable(route = Route.MovieScreen.route) {
+            composable(
+                route = Route.LoginScreen.route
+            ) {
+
+                LoginScreen(
+                    onNavToHomePage = {
+                        navController.navigate(Route.MovieScreen.route) {
+                            launchSingleTop = true
+                            popUpTo(Route.LoginScreen.route) {
+                                inclusive = true
+                            }
+                        }
+                    },
+                    onNavToSignUpPage = { navController.navigate(Route.SignUpScreen.route) })
+            }
+
+            composable(
+                route = Route.SignUpScreen.route
+            ) {
+                SignUpScreen(onNavToHomePage = {
+                    navController.navigate(Route.MovieScreen.route) {
+                        popUpTo(Route.SignUpScreen.route) {
+                            inclusive = true
+                        }
+                    }
+                },
+                    onNavToLoginPage = {
+                        navController.navigate(Route.LoginScreen.route)
+                    }
+                )
+            }
+            composable(
+                route = Route.MovieScreen.route
+            ) {
                 MoviesScreen(navController = navController)
             }
 
@@ -77,7 +118,9 @@ fun Navigation() {
                 MovieDetailScreen(navController = navController, scrollState = scrollState)
             }
 
-            composable(route = Route.TvScreen.route) {
+            composable(
+                route = Route.TvScreen.route
+            ) {
                 TvScreen(navController = navController, scrollState = scrollState)
             }
 
@@ -87,7 +130,7 @@ fun Navigation() {
                     type = NavType.IntType
                 })
             ) {
-                TvSDetailScreen(navController = navController, scrollState = scrollState)
+                TvDetailScreen(navController = navController, scrollState = scrollState)
             }
 
             composable(
@@ -103,7 +146,12 @@ fun Navigation() {
             ) {
                 SearchScreen(navController = navController)
             }
+
+            composable(
+                route = Route.ProfileScreen.route
+            ) {
+                ProfileScreen(navController = navController)
+            }
         }
     }
-
 }

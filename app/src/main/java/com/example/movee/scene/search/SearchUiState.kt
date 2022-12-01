@@ -1,4 +1,4 @@
-package com.example.movee.ui.viewmodel
+package com.example.movee.scene.search
 
 import com.example.movee.uimodels.SearchUiModel
 

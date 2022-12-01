@@ -1,4 +1,4 @@
-package com.example.movee.ui.view
+package com.example.movee.scene.moviedetail
 
 import androidx.compose.foundation.ScrollState
 import androidx.compose.foundation.clickable
@@ -22,7 +22,8 @@ import com.example.movee.ui.components.MovieDateItem
 import com.example.movee.ui.components.MovieRateItem
 import com.example.movee.ui.components.MovieRuntimeItem
 import com.example.movee.ui.components.TextItem
-import com.example.movee.ui.viewmodel.MovieDetailViewModel
+import com.example.movee.ui.view.CardImageItem
+import com.example.movee.ui.view.PosterImageItem
 import com.example.movee.uimodels.CreditUiModel
 import com.example.movee.util.round
 
@@ -41,8 +42,10 @@ fun MovieDetailScreen(
             modifier = Modifier.verticalScroll(scrollState)
         ) {
             if (state.movieDetailUiModel != null) {
-                PosterImageItem(imagePath = state.movieDetailUiModel.posterPath )
-                //state.movieDetailUiModel.backdropPath ?: state.movieDetailUiModel.posterPath
+                PosterImageItem(
+                    imagePath = state.movieDetailUiModel.backdropPath,
+                    modifier = Modifier.padding(bottom = 8.dp)
+                )
                 Column(modifier = Modifier.padding(horizontal = 16.dp)) {
 
                     Text(

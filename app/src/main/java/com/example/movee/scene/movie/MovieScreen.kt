@@ -1,4 +1,4 @@
-package com.example.movee.ui.view
+package com.example.movee.scene.movie
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -26,14 +26,13 @@ import com.example.movee.navigation.Route
 import com.example.movee.ui.components.MovieDateItem
 import com.example.movee.ui.components.MovieRateItem
 import com.example.movee.ui.components.TextItem
-import com.example.movee.ui.viewmodel.MovieViewModel
+import com.example.movee.ui.view.CardImageItem
 import com.example.movee.uimodels.movie.NowPlayingMovieUiModel
 import com.example.movee.uimodels.movie.PopularMovieUiModel
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPager
 import com.google.accompanist.pager.PagerScope
 import kotlin.math.absoluteValue
-
 
 @Composable
 fun MoviesScreen(
@@ -51,6 +50,7 @@ fun MoviesScreen(
     )
 
 }
+
 
 @OptIn(ExperimentalPagerApi::class)
 @Composable

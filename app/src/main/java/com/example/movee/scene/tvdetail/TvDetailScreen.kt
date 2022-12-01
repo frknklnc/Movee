@@ -1,4 +1,4 @@
-package com.example.movee.ui.view
+package com.example.movee.scene.tvdetail
 
 
 import androidx.compose.foundation.ScrollState
@@ -22,12 +22,13 @@ import com.example.movee.navigation.Route
 import com.example.movee.ui.components.ChipItem
 import com.example.movee.ui.components.MovieRateItem
 import com.example.movee.ui.components.TextItem
-import com.example.movee.ui.viewmodel.TvDetailViewModel
+import com.example.movee.ui.view.CardImageItem
+import com.example.movee.ui.view.PosterImageItem
 import com.example.movee.uimodels.CreditUiModel
 import com.example.movee.util.round
 
 @Composable
-fun TvSDetailScreen(
+fun TvDetailScreen(
     navController: NavController,
     scrollState: ScrollState,
     viewModel: TvDetailViewModel = hiltViewModel()
@@ -41,7 +42,7 @@ fun TvSDetailScreen(
         ) {
             if (state.tvDetailUiModel != null) {
 
-                PosterImageItem(imagePath = state.tvDetailUiModel.posterPath)
+                PosterImageItem(imagePath = state.tvDetailUiModel.backdropPath, Modifier.padding(bottom = 8.dp))
 
                 Column(modifier = Modifier.padding(start = 16.dp, end = 16.dp)) {
 
@@ -91,7 +92,6 @@ fun TvSDetailScreen(
         }
     }
 }
-
 
 @Composable
 fun TvSeriesCredits(

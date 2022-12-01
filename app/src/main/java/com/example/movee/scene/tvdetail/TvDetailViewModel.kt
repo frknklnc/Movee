@@ -1,4 +1,4 @@
-package com.example.movee.ui.viewmodel
+package com.example.movee.scene.tvdetail
 
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel

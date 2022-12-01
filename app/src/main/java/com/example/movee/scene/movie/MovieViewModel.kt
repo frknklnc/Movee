@@ -1,4 +1,4 @@
-package com.example.movee.ui.viewmodel
+package com.example.movee.scene.movie
 
 import android.util.Log
 import androidx.lifecycle.ViewModel

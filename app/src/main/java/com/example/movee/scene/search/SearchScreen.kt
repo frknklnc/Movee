@@ -1,4 +1,4 @@
-package com.example.movee.ui.view
+package com.example.movee.scene.search
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
@@ -19,7 +19,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
 import coil.compose.rememberAsyncImagePainter
 import com.example.movee.ui.components.TextInputItem
-import com.example.movee.ui.viewmodel.SearchViewModel
+import com.example.movee.ui.view.CardImageItem
 import com.example.movee.uimodels.SearchUiModel
 
 @OptIn(ExperimentalLifecycleComposeApi::class)

@@ -181,7 +181,8 @@ data class TvDetailResponse(
         numberOfSeasons = numberOfSeasons,
         overview = overview,
         originalLanguage = originalLanguage,
-        voteCount = voteCount
+        voteCount = voteCount,
+        backdropPath = backdropPath
     )
 
 }

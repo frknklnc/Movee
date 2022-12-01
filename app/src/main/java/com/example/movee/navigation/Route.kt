@@ -23,7 +23,14 @@ sealed class Route(val route: String){
         override val title: String = "Search"
     }
 
+    object ProfileScreen : Route("profile_screen"), BottomNavigationItem {
+        override val icon: Int = R.drawable.ic_person
+        override val title: String = "Profile"
+    }
+
     object MovieDetailScreen: Route("movie_detail_screen")
     object TvDetailScreen: Route("tv_detail_screen")
     object CastScreen: Route("cast_screen")
+    object LoginScreen: Route("login_screen")
+    object SignUpScreen: Route ("sing_up_screen")
 }

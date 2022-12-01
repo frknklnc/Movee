@@ -1,4 +1,4 @@
-package com.example.movee.ui.viewmodel
+package com.example.movee.scene.tv
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
