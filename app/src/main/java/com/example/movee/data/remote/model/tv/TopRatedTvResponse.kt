@@ -1,4 +1,4 @@
-package com.example.movee.data.model.tv
+package com.example.movee.data.remote.model.tv
 
 
 import com.example.movee.uimodels.tv.TopRatedTvUiModel

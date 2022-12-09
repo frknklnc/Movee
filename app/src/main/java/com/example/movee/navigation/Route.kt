@@ -33,4 +33,5 @@ sealed class Route(val route: String){
     object CastScreen: Route("cast_screen")
     object LoginScreen: Route("login_screen")
     object SignUpScreen: Route ("sing_up_screen")
+    object MapScreen: Route ("map_screen")
 }

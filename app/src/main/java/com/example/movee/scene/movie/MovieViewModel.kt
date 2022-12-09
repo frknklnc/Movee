@@ -49,14 +49,11 @@ class MovieViewModel @Inject constructor(
                 is Resource.Success -> {
                     result.data?.let {
                         nowPlayingMoviesList.value = it
-
-                        Log.e("error", "viewmodelSuccess")
                     }
                 }
 
                 is Resource.Error -> {
                     result.message?.let {
-                        Log.e("error", "viewmodelError")
                     }
                 }
             }

@@ -1,4 +1,4 @@
-package com.example.movee.data.model
+package com.example.movee.data.remote.model
 
 
 import com.example.movee.R

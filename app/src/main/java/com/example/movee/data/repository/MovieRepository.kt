@@ -13,7 +13,7 @@ class MovieRepository @Inject constructor(private val service: ApiService) {
 
     suspend fun getPopularMoviesList(): Resource<List<PopularMovieUiModel>> {
         return try {
-            val response = service.popularMovies(api_key = API_KEY)
+            val response = service.popularMovies()
             if (response.isSuccessful) {
                 response.body()?.let { res ->
                     return@let Resource.Success(res.movies.map { it.toUiModel() })
@@ -30,7 +30,7 @@ class MovieRepository @Inject constructor(private val service: ApiService) {
 
     suspend fun getNowPlayingMoviesList(): Resource<List<NowPlayingMovieUiModel>> {
         return try {
-            val response = service.nowPlayingMovies(api_key = API_KEY)
+            val response = service.nowPlayingMovies()
             if (response.isSuccessful) {
                 response.body()?.let { res ->
                     return@let Resource.Success(res.movies.map { it.toUiModel() })
@@ -47,7 +47,7 @@ class MovieRepository @Inject constructor(private val service: ApiService) {
 
     suspend fun getMovieDetails(movieId: Int): Resource<MovieDetailUiModel> {
         return try {
-            val response = service.movieDetails(api_key = API_KEY, movieId = movieId)
+            val response = service.movieDetails(movieId = movieId)
             if (response.isSuccessful) {
                 response.body()?.let { res ->
                     return@let Resource.Success(res.toUiModel())
@@ -64,7 +64,7 @@ class MovieRepository @Inject constructor(private val service: ApiService) {
 
     suspend fun getMovieCredits(movieId: Int): Resource<List<CreditUiModel>> {
         return try {
-            val response = service.movieCredits(api_key = API_KEY, movieId = movieId)
+            val response = service.movieCredits(movieId = movieId)
             if (response.isSuccessful) {
                 response.body()?.let { res ->
                     return@let Resource.Success(res.cast.map { it.toUiModel() })

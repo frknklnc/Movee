@@ -11,8 +11,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.util.lerp
@@ -124,7 +126,7 @@ fun TvSeriesListView(
 @Composable
 fun Flow(topRatedTvSeries: List<TopRatedTvUiModel>, onClick: (Int) -> Unit) {
 
-    //val itemSize: Dp = LocalConfiguration.current.screenWidthDp.dp / 2
+    val itemSize: Dp = LocalConfiguration.current.screenHeightDp.dp / 3
 
     FlowRow(mainAxisSize = SizeMode.Expand, mainAxisAlignment = FlowMainAxisAlignment.SpaceEvenly) {
         topRatedTvSeries.forEachIndexed { index, _ ->
@@ -143,7 +145,7 @@ fun Flow(topRatedTvSeries: List<TopRatedTvUiModel>, onClick: (Int) -> Unit) {
 
                     CardImageItem(
                         imagePath = topRatedTvSeries[index].posterPath,
-                        modifier = Modifier.fillMaxWidth(),
+                        modifier = Modifier.size(itemSize),
                         contentScale = ContentScale.Crop
                     )
                     MovieRateItem(

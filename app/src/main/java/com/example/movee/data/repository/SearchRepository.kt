@@ -11,7 +11,7 @@ class SearchRepository @Inject constructor(private val service: ApiService) {
 
     suspend fun getSearch(query: String): Flow<List<SearchUiModel>> {
         return flow {
-            val response = service.search(api_key = Constants.API_KEY, query = query)
+            val response = service.search(query = query)
             if (response.isSuccessful) {
                 response.body()!!.let { res ->
                     emit(res.results.map { it.toUiModel() })

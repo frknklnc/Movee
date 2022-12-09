@@ -48,7 +48,6 @@ fun MoviesScreen(
         navController = navController,
         nowPlayingMovies = nowPlayingMoviesList.value
     )
-
 }
 
 

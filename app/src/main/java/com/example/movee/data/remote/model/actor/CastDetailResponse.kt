@@ -1,4 +1,4 @@
-package com.example.movee.data.model.actor
+package com.example.movee.data.remote.model.actor
 
 
 import com.example.movee.uimodels.actor.CastDetailUiModel

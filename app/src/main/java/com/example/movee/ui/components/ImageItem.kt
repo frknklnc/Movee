@@ -8,9 +8,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
+import com.example.movee.ui.theme.MoveeTheme
 import com.example.movee.util.Constants
 
 @Composable
@@ -46,4 +48,13 @@ fun CardImageItem(
         contentScale = contentScale
     )
 
+}
+
+@Preview
+@Composable
+fun ImageCardPrev() {
+    MoveeTheme() {
+        CardImageItem(imagePath = Constants.IMAGE_BASE + "/pFlaoHTZeyNkG83vxsAJiGzfSsa.jpg")
+        
+    }
 }

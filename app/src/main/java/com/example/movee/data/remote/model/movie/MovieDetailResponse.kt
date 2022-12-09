@@ -1,4 +1,4 @@
-package com.example.movee.data.model.movie
+package com.example.movee.data.remote.model.movie
 
 import com.example.movee.uimodels.movie.MovieDetailUiModel
 import com.google.gson.annotations.SerializedName

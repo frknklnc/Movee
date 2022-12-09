@@ -16,7 +16,7 @@ class TvRepository @Inject constructor(
 
     suspend fun getPopularTv(): Resource<List<PopularTvUiModel>> {
         return try {
-            val response = service.popularTv(api_key = API_KEY)
+            val response = service.popularTv()
             if (response.isSuccessful) {
                 response.body()!!.let { res ->
                     return@let Resource.Success(res.tvSeries.map { it.toUiModel() })
@@ -32,7 +32,7 @@ class TvRepository @Inject constructor(
 
     suspend fun getTopRatedTv(): Resource<List<TopRatedTvUiModel>> {
         return try {
-            val response = service.topRatedTv(api_key = API_KEY)
+            val response = service.topRatedTv()
             if (response.isSuccessful) {
                 response.body()!!.let { res ->
                     return@let Resource.Success(res.tvSeries.map { it.toUiModel() })
@@ -48,7 +48,7 @@ class TvRepository @Inject constructor(
 
     suspend fun getTvDetails(tvSeriesId: Int): Resource<TvDetailUiModel> {
         return try {
-            val response = service.tvDetails(api_key = API_KEY, tvSeriesId = tvSeriesId)
+            val response = service.tvDetails(tvSeriesId = tvSeriesId)
             if (response.isSuccessful) {
                 response.body()?.let {
                     Log.e("errorr", response.body().toString())
@@ -66,7 +66,7 @@ class TvRepository @Inject constructor(
 
     suspend fun getTvCredits(tvSeriesId: Int): Resource<List<CreditUiModel>> {
         return try {
-            val response = service.tvCredits(api_key = API_KEY, tvSeriesId = tvSeriesId)
+            val response = service.tvCredits(tvSeriesId = tvSeriesId)
             if (response.isSuccessful) {
                 response.body()?.let { res ->
                     return@let Resource.Success(res.cast.map { it.toUiModel() })

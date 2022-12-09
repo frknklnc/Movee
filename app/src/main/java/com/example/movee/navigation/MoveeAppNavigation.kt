@@ -21,7 +21,7 @@ import androidx.navigation.navArgument
 import com.example.movee.R
 import com.example.movee.scene.cast.CastScreen
 import com.example.movee.scene.login.LoginScreen
-import com.example.movee.scene.login.SignUpScreen
+import com.example.movee.scene.map.MapScreen
 import com.example.movee.scene.movie.MoviesScreen
 import com.example.movee.scene.moviedetail.MovieDetailScreen
 import com.example.movee.scene.profile.ProfileScreen
@@ -75,7 +75,6 @@ fun Navigation() {
             composable(
                 route = Route.LoginScreen.route
             ) {
-
                 LoginScreen(
                     onNavToHomePage = {
                         navController.navigate(Route.MovieScreen.route) {
@@ -84,24 +83,7 @@ fun Navigation() {
                                 inclusive = true
                             }
                         }
-                    },
-                    onNavToSignUpPage = { navController.navigate(Route.SignUpScreen.route) })
-            }
-
-            composable(
-                route = Route.SignUpScreen.route
-            ) {
-                SignUpScreen(onNavToHomePage = {
-                    navController.navigate(Route.MovieScreen.route) {
-                        popUpTo(Route.SignUpScreen.route) {
-                            inclusive = true
-                        }
-                    }
-                },
-                    onNavToLoginPage = {
-                        navController.navigate(Route.LoginScreen.route)
-                    }
-                )
+                    })
             }
             composable(
                 route = Route.MovieScreen.route
@@ -151,6 +133,9 @@ fun Navigation() {
                 route = Route.ProfileScreen.route
             ) {
                 ProfileScreen(navController = navController)
+            }
+            composable(route = Route.MapScreen.route) {
+                MapScreen()
             }
         }
     }

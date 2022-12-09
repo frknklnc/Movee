@@ -36,6 +36,7 @@ fun MovieDetailScreen(
 
     val uiState = viewModel.uiState.collectAsState()
 
+
     uiState.value?.let { state ->
 
         Column(
