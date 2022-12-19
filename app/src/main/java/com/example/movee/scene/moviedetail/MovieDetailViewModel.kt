@@ -52,4 +52,5 @@ class MovieDetailViewModel @Inject constructor(
     private fun toMovieDetailModel(movieDetail: MovieDetailUiModel?, cast: List<CreditUiModel>?){
         uiState.value = MovieDetailModel(movieDetailUiModel = movieDetail, castList = cast ?: listOf())
     }
+
 }

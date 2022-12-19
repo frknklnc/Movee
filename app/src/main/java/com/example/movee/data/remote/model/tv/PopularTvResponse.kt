@@ -45,7 +45,7 @@ data class PopularTvResponse(
         fun toUiModel() = PopularTvUiModel(
             tvSeriesId = tvSeriesId,
             title = title,
-            posterPath = posterPath ?: "",
+            posterPath = posterPath,
             voteAverage = voteAverage,
         )
     }

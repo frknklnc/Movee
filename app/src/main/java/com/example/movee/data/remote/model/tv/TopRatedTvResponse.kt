@@ -46,7 +46,7 @@ data class TopRatedTvResponse(
             tvSeriesId = tvSeriesId,
             title = title,
             posterPath = posterPath,
-            voteAverage = voteAverage
+            voteAverage = voteAverage,
         )
     }
 }

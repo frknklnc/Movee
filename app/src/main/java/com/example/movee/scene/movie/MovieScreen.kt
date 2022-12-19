@@ -3,14 +3,18 @@ package com.example.movee.scene.movie
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
+import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.colorResource
@@ -21,6 +25,10 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.util.lerp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
+import androidx.paging.LoadState
+import androidx.paging.compose.LazyPagingItems
+import androidx.paging.compose.collectAsLazyPagingItems
+import androidx.paging.compose.items
 import com.example.movee.R
 import com.example.movee.navigation.Route
 import com.example.movee.ui.components.MovieDateItem
@@ -41,12 +49,15 @@ fun MoviesScreen(
 ) {
 
     val nowPlayingMoviesList = viewModel.nowPlayingMoviesList.collectAsState()
-    val popularMoviesList = viewModel.popularMoviesList.collectAsState()
+    //val popularMoviesList = viewModel.popularMoviesList.collectAsState()
+    val popularMoviesList = viewModel.popularMovies.collectAsLazyPagingItems()
+    val popularMovieState = rememberLazyListState()
 
     MovieListView(
-        popularMovies = popularMoviesList.value,
+        popularMovies = popularMoviesList,
         navController = navController,
-        nowPlayingMovies = nowPlayingMoviesList.value
+        nowPlayingMovies = nowPlayingMoviesList.value,
+        popularMovieState = popularMovieState
     )
 }
 
@@ -54,11 +65,12 @@ fun MoviesScreen(
 @OptIn(ExperimentalPagerApi::class)
 @Composable
 fun MovieListView(
-    popularMovies: List<PopularMovieUiModel>,
+    popularMovies: LazyPagingItems<PopularMovieUiModel>,
     nowPlayingMovies: List<NowPlayingMovieUiModel>,
+    popularMovieState: LazyListState,
     navController: NavController
 ) {
-    LazyColumn {
+    LazyColumn(state = popularMovieState){
         item {
             TextItem(
                 text = "Now Playing Movies",
@@ -115,13 +127,26 @@ fun MovieListView(
                 fontWeight = FontWeight.Bold
             )
         }
+        if(popularMovies.loadState.refresh == LoadState.Loading || popularMovies.loadState.append == LoadState.Loading){
+            item  {
+                Spacer(Modifier.height(50.dp))
 
+                CircularProgressIndicator(
+                    modifier = Modifier.size(100.dp),
+                    strokeWidth = 6.dp,
+                    color = Color.Gray
+                )
+
+                Spacer(Modifier.height(50.dp))
+            }
+        }
         items(popularMovies) { movies ->
-            PopularMovieRow(movies = movies, onClick = { id ->
-                navController.navigate(Route.MovieDetailScreen.route + "/${movies.movieId}")
-
-            })
-            Spacer(modifier = Modifier.padding(5.dp))
+            movies?.let {
+                PopularMovieRow(movies = movies, onClick = { id ->
+                    navController.navigate(Route.MovieDetailScreen.route + "/${movies.movieId}")
+                })
+                Spacer(modifier = Modifier.padding(5.dp))
+            }
         }
     }
 }
@@ -165,10 +190,8 @@ fun PopularMovieRow(movies: PopularMovieUiModel, onClick: (Int) -> Unit) {
                     )
                     MovieRateItem(rate = movies.voteAverage.toString())
                 }
-
             }
         }
-
     }
 }
 

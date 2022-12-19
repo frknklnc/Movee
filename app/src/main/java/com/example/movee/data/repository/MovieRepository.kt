@@ -1,5 +1,7 @@
 package com.example.movee.data.repository
 
+import com.example.movee.data.remote.model.favourite.FavouriteResponse
+import com.example.movee.data.remote.model.movie.PopularMovieResponse
 import com.example.movee.data.remote.service.ApiService
 import com.example.movee.uimodels.CreditUiModel
 import com.example.movee.uimodels.movie.MovieDetailUiModel
@@ -11,12 +13,12 @@ import javax.inject.Inject
 
 class MovieRepository @Inject constructor(private val service: ApiService) {
 
-    suspend fun getPopularMoviesList(): Resource<List<PopularMovieUiModel>> {
+    suspend fun getPopularMoviesList(page:Int): Resource<PopularMovieResponse> {
         return try {
-            val response = service.popularMovies()
+            val response = service.popularMovies(page)
             if (response.isSuccessful) {
                 response.body()?.let { res ->
-                    return@let Resource.Success(res.movies.map { it.toUiModel() })
+                    return@let Resource.Success(res)
                 } ?: Resource.Error("Error.")
 
             } else {

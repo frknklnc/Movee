@@ -6,7 +6,7 @@ import com.google.gson.annotations.SerializedName
 data class PopularMovieResponse(
     @SerializedName ("page") val page: Int,
     @SerializedName ("results") val movies: List<PopularMovies>,
-    @SerializedName ("total_pages") val total_pages: Int,
+    @SerializedName ("total_pages") val totalPages: Int,
     @SerializedName ("total_results") val total_results: Int
 ){
     data class PopularMovies(
@@ -18,11 +18,11 @@ data class PopularMovieResponse(
         @SerializedName ("original_title") val originalTitle: String,
         @SerializedName ("overview") val overview: String,
         @SerializedName ("popularity") val popularity: Double,
-        @SerializedName ("poster_path") val posterPath: String,
-        @SerializedName ("release_date") val releaseDate: String,
+        @SerializedName ("poster_path") val posterPath: String?,
+        @SerializedName ("release_date") val releaseDate: String?,
         @SerializedName ("title") val title: String,
         @SerializedName ("video") val video: Boolean,
-        @SerializedName ("vote_average") val voteAverage: Double,
+        @SerializedName ("vote_average") val voteAverage: Double?,
         @SerializedName ("vote_count") val voteCount: Int
     ) {
         fun toUiModel() = PopularMovieUiModel(
