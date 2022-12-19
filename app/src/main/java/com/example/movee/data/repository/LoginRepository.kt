@@ -3,11 +3,7 @@ package com.example.movee.data.repository
 import com.example.movee.data.local.SharedPrefHelper
 import com.example.movee.data.remote.model.login.LoginRequestModel
 import com.example.movee.data.remote.model.login.SessionRequestModel
-import com.example.movee.data.remote.service.ApiService
 import com.example.movee.data.remote.service.LoginService
-import com.example.movee.uimodels.account.AccountUiModel
-import com.example.movee.uimodels.movie.MovieDetailUiModel
-import com.example.movee.util.Resource
 import javax.inject.Inject
 
 class LoginRepository @Inject constructor(

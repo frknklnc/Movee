@@ -1,14 +1,14 @@
 package com.example.movee.data.repository
 
 import com.example.movee.data.local.SharedPrefHelper
-import com.example.movee.data.remote.service.ApiService
+import com.example.movee.data.remote.service.AccountService
 import com.example.movee.uimodels.account.AccountUiModel
 import com.example.movee.uimodels.favourite.FavouriteMovieUiModel
 import com.example.movee.util.Resource
 import javax.inject.Inject
 
 class ProfileRepository @Inject constructor(
-    private val service: ApiService,
+    private val service: AccountService,
     private val sharedPrefHelper: SharedPrefHelper
 ) {
 

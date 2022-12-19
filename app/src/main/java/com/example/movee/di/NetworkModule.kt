@@ -1,15 +1,11 @@
 package com.example.movee.di
 
-import android.content.Context
-import com.example.movee.data.local.SharedPrefHelper
-import com.example.movee.data.remote.service.ApiService
 import com.example.movee.data.remote.service.LoginService
 import com.example.movee.util.api.ApiKeyInterceptor
 import com.example.movee.util.api.RequiresSessionTokenInterceptor
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
-import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
@@ -39,12 +35,6 @@ class NetworkModule {
             .client(okHttpClient)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
-    }
-
-    @Provides
-    @Singleton
-    fun provideApiService(retrofit: Retrofit): ApiService {
-        return retrofit.create(ApiService::class.java)
     }
 
     @Provides
