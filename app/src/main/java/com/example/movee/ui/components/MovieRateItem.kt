@@ -23,7 +23,7 @@ import com.example.movee.R
 fun MovieRateItem(modifier: Modifier = Modifier,
                   backgroundColor: Color = colorResource(id = R.color.green),
                   textColor : Color = colorResource(id = R.color.mainColor),
-                  rate: String) {
+                  rate: String?) {
 
     Surface(modifier = modifier, shape = RoundedCornerShape(10.dp), color = backgroundColor) {
 
@@ -38,7 +38,7 @@ fun MovieRateItem(modifier: Modifier = Modifier,
                 tint = textColor,
                 modifier = Modifier.size(15.dp))
 
-            Text(text = rate, color = textColor, fontSize = 14.sp)
+            Text(text = rate.toString(), color = textColor, fontSize = 14.sp)
 
         }
 

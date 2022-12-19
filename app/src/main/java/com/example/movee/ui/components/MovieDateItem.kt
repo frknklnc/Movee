@@ -17,7 +17,7 @@ import com.example.movee.R
 @Composable
 fun MovieDateItem(modifier: Modifier = Modifier,
                   textColor: Color = colorResource(id = R.color.mainColor),
-                  date: String) {
+                  date: String?) {
 
         Row(
             verticalAlignment = Alignment.CenterVertically,
@@ -27,7 +27,7 @@ fun MovieDateItem(modifier: Modifier = Modifier,
                 painterResource(id = R.drawable.ic_date),
                 contentDescription = null, tint = textColor)
 
-            Text(text = date, fontSize = 14.sp, color = textColor)
+            Text(text = date.toString(), fontSize = 14.sp, color = textColor)
 
         }
 

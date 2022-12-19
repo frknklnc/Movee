@@ -6,7 +6,6 @@ import com.example.movee.uimodels.CreditUiModel
 import com.example.movee.uimodels.tv.PopularTvUiModel
 import com.example.movee.uimodels.tv.TopRatedTvUiModel
 import com.example.movee.uimodels.tv.TvDetailUiModel
-import com.example.movee.util.Constants.API_KEY
 import com.example.movee.util.Resource
 import javax.inject.Inject
 

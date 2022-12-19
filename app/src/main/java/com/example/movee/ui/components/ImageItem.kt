@@ -16,7 +16,7 @@ import com.example.movee.ui.theme.MoveeTheme
 import com.example.movee.util.Constants
 
 @Composable
-fun PosterImageItem(imagePath: String, modifier: Modifier) {
+fun PosterImageItem(imagePath: String?, modifier: Modifier) {
 
     Image(
         painter = rememberAsyncImagePainter(
@@ -33,7 +33,7 @@ fun PosterImageItem(imagePath: String, modifier: Modifier) {
 
 @Composable
 fun CardImageItem(
-    imagePath: String, modifier: Modifier = Modifier.size(height = 150.dp, width = 100.dp),
+    imagePath: String?, modifier: Modifier = Modifier.size(height = 150.dp, width = 100.dp),
     contentScale: ContentScale = ContentScale.Fit
 ) {
     Image(

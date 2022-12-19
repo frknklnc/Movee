@@ -8,7 +8,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -18,6 +18,8 @@ import androidx.lifecycle.compose.ExperimentalLifecycleComposeApi
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
 import coil.compose.rememberAsyncImagePainter
+import com.example.movee.ui.components.ErrorScreen
+import com.example.movee.ui.components.LoadingScreen
 import com.example.movee.ui.components.TextInputItem
 import com.example.movee.ui.view.CardImageItem
 import com.example.movee.uimodels.SearchUiModel
@@ -40,16 +42,32 @@ fun SearchScreen(
             }
         )
 
-        LazyColumn() {
-            items(uiState.value.data) { search ->
-                SearchRow(search = search, onClick = {
-                    navController.navigate(it)
-                })
+        when {
+            uiState.value.isLoading -> {
+                LoadingScreen()
+            }
+            
+            uiState.value.error != null -> {
+                ErrorScreen(message = uiState.value.error!!)
+            }
+            
+            uiState.value.data.isEmpty() -> {
+                ErrorScreen(message = "not found")
+            }
+
+            uiState.value.data.isNotEmpty() -> {
+
+                LazyColumn() {
+                    items(uiState.value.data) { search ->
+                        SearchRow(search = search, onClick = {
+                            navController.navigate(it)
+                        })
+                    }
+                }
             }
         }
     }
 }
-
 
 
 @Composable

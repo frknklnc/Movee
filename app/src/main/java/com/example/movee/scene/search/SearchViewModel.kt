@@ -19,7 +19,8 @@ class SearchViewModel @Inject constructor(
     var query = MutableStateFlow("")
         private set
 
-    fun makeSearch() {
+
+    private fun makeSearch() {
         viewModelScope.launch {
             query.debounce(500).filter { str ->
                 if (str.isEmpty() || str.length < 3) {
@@ -31,11 +32,20 @@ class SearchViewModel @Inject constructor(
                     return@filter true
                 }
             }.distinctUntilChanged().flatMapLatest { str ->
+                _uiState.update {
+                    it.showLoading()
+                }
                 repository.getSearch(str)
+            }.catch { error ->
+                _uiState.update {
+                    it.showError(error.message ?: "Something went wrong")
+                }
+
             }.collect { list ->
                 _uiState.update {
                     it.copy(
-                        data = list
+                        data = list,
+                        isLoading = false
                     )
                 }
             }
