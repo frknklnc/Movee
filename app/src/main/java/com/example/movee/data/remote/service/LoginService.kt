@@ -1,8 +1,6 @@
 package com.example.movee.data.remote.service
 
-import com.example.movee.data.remote.model.account.AccountResponse
 import com.example.movee.data.remote.model.login.*
-import okhttp3.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST

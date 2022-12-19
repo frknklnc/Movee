@@ -102,7 +102,6 @@ fun TvSeriesListView(
                         modifier = Modifier.fillMaxSize(),
                         ContentScale.Crop
                     )
-
                 }
             }
         }
@@ -119,6 +118,7 @@ fun TvSeriesListView(
                 navController.navigate(Route.TvDetailScreen.route + "/${id}")
             })
         }
+
     }
 }
 
@@ -158,17 +158,12 @@ fun Flow(topRatedTvSeries: List<TopRatedTvUiModel>, onClick: (Int) -> Unit) {
                         fontSize = 14.sp,
                         fontWeight = FontWeight.Bold,
                         maxLines = 1,
-                        overflow = TextOverflow.Ellipsis
+                        overflow = TextOverflow.Ellipsis,
                     )
-
-
                 }
-
             }
         }
     }
-
-
 }
 
 

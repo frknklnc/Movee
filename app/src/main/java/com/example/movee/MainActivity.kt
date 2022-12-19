@@ -7,7 +7,6 @@ import com.example.movee.navigation.Navigation
 import com.example.movee.ui.theme.MoveeTheme
 import dagger.hilt.android.AndroidEntryPoint
 
-
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -15,7 +14,6 @@ class MainActivity : ComponentActivity() {
         setContent {
             MoveeTheme {
                 Navigation()
-
             }
         }
     }

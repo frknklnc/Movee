@@ -13,7 +13,6 @@ import javax.inject.Inject
 class LoginRepository @Inject constructor(
     private val sharedPrefHelper: SharedPrefHelper,
     private val loginService: LoginService,
-    private val service: ApiService
 ) {
 
     fun getLoginState() =  if (sharedPrefHelper.getSessionId().isNullOrBlank())
@@ -41,23 +40,6 @@ class LoginRepository @Inject constructor(
 
         sharedPrefHelper.saveSessionId(sessionResponse.sessionId)
 
-    }
-
-    suspend fun getAccountDetails(): Resource<AccountUiModel> {
-        return try {
-            val response = service.getAccountDetail()
-            if (response.isSuccessful) {
-                response.body()?.let { res ->
-                    return@let Resource.Success(res.toUiModel())
-                } ?: Resource.Error("Error.")
-
-            } else {
-                Resource.Error("Error.")
-            }
-        } catch (e: Exception) {
-
-            Resource.Error("${e.message}")
-        }
     }
 }
 
