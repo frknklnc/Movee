@@ -12,8 +12,10 @@ class SearchRepository @Inject constructor(private val service: SearchService) {
         return flow {
             val response = service.getSearch(query = query)
             if (response.isSuccessful) {
-                response.body()!!.let { res ->
+                response.body()?.let { res ->
                     emit(res.results.map { it.toUiModel() })
+                } ?: kotlin.run {
+                    emit(listOf())
                 }
             } else {
                 emit(listOf())

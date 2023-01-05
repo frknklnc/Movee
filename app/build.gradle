@@ -125,9 +125,6 @@ dependencies {
     implementation platform('com.google.firebase:firebase-bom:29.0.1')
     implementation 'com.google.firebase:firebase-auth-ktx'
 
-    //Place SDK
-    //implementation 'com.google.android.libraries.places:places:2.7.0'
-    //implementation 'com.google.maps.android:places-ktx:2.0.0'
 
     //maps
     implementation 'com.google.maps.android:maps-compose:2.7.2'

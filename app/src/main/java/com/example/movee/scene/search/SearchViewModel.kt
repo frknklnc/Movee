@@ -19,7 +19,6 @@ class SearchViewModel @Inject constructor(
     var query = MutableStateFlow("")
         private set
 
-
     private fun makeSearch() {
         viewModelScope.launch {
             query.debounce(500).filter { str ->
@@ -31,7 +30,7 @@ class SearchViewModel @Inject constructor(
                 } else {
                     return@filter true
                 }
-            }.distinctUntilChanged().flatMapLatest { str ->
+            }.flatMapLatest { str ->
                 _uiState.update {
                     it.showLoading()
                 }
@@ -43,10 +42,7 @@ class SearchViewModel @Inject constructor(
 
             }.collect { list ->
                 _uiState.update {
-                    it.copy(
-                        data = list,
-                        isLoading = false
-                    )
+                    it.updateData(list)
                 }
             }
         }

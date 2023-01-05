@@ -26,7 +26,6 @@ interface TvService {
         @Path("tv_id") tvSeriesId: Int
     ): Response<CreditsResponse>
 
-
     companion object {
         const val POPULAR_TV = "tv/popular"
         const val TOP_RATED_TV = "tv/top_rated"

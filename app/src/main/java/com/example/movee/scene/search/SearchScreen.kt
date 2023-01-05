@@ -50,10 +50,6 @@ fun SearchScreen(
             uiState.value.error != null -> {
                 ErrorScreen(message = uiState.value.error!!)
             }
-            
-            uiState.value.data.isEmpty() -> {
-                ErrorScreen(message = "not found")
-            }
 
             uiState.value.data.isNotEmpty() -> {
 
@@ -88,7 +84,7 @@ fun SearchRow(search: SearchUiModel, onClick: (String) -> Unit) {
             }
             Column(
                 modifier = Modifier
-                    .height(height = 120.dp)
+                    .height(height = 150.dp)
                     .fillMaxWidth(), verticalArrangement = Arrangement.SpaceBetween
             ) {
                 search.name?.let { str ->
@@ -101,7 +97,7 @@ fun SearchRow(search: SearchUiModel, onClick: (String) -> Unit) {
                 Image(
                     painter = rememberAsyncImagePainter(model = search.type),
                     contentDescription = null,
-                    modifier = Modifier.size(30.dp)
+                    modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp).size(25.dp)
                 )
             }
         }

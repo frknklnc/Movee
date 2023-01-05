@@ -13,6 +13,11 @@ data class SearchUiState(
         error = null
     )
 
+    fun updateData(list: List<SearchUiModel>) = copy(
+        data = list,
+        isLoading = false
+    )
+
     fun showLoading() = copy(
         isLoading = true,
         error = null
